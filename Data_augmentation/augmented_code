@@ -1,0 +1,64 @@
+import tensorflow as tf
+from tensorflow.keras.preprocessing.image import ImageDataGenerator, img_to_array
+import os
+from PIL import Image
+import numpy as np
+import shutil  # For copying original images
+
+# Set up paths
+input_dir = "C:/Users/GOKUL RAJ/RAJ/TERRAIN ANALYSIS/dataset/Textures"  # Folder containing subfolders for each label
+output_dir = "C:/Users/GOKUL RAJ/RAJ/TERRAIN ANALYSIS/dataset/augmented_data"
+
+# Create the output directory if it doesn't exist
+os.makedirs(output_dir, exist_ok=True)
+
+# Configure the data augmentation parameters
+datagen = ImageDataGenerator(
+    rotation_range=40,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True,
+    fill_mode='nearest'
+)
+
+# Number of augmented images per original image
+num_augmented_images = 20
+
+# Loop over each label folder in the input directory
+for label in os.listdir(input_dir):
+    label_path = os.path.join(input_dir, label)
+    if os.path.isdir(label_path):  # Ensure it's a directory
+        print(f"Processing label folder: {label}")  # Debugging line
+
+        # Create a corresponding label folder in the output directory
+        output_label_dir = os.path.join(output_dir, label)
+        os.makedirs(output_label_dir, exist_ok=True)
+
+        # Process the single image in each label folder
+        for filename in os.listdir(label_path):
+            if filename.endswith((".jpg", ".png")):
+                img_path = os.path.join(label_path, filename)
+
+                # Copy the original image to the output label directory
+                shutil.copy(img_path, os.path.join(output_label_dir, f"{label}_original.jpg"))
+                print(f"Copied original image: {label}_original.jpg")
+
+                # Load and preprocess image for augmentation
+                img = Image.open(img_path).resize((224, 224))
+                img_array = img_to_array(img)  # Convert to array
+                img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
+
+                # Generate augmented images
+                aug_iter = datagen.flow(img_array, batch_size=1)
+
+                # Save each augmented image in the label's output directory
+                for i in range(num_augmented_images):
+                    augmented_img = next(aug_iter)[0].astype(np.uint8)
+                    augmented_img_pil = Image.fromarray(augmented_img)
+                    save_path = os.path.join(output_label_dir, f"{label}_aug_{i}.jpg")
+                    augmented_img_pil.save(save_path)
+                    print(f"Saved augmented image: {save_path}")  # Debugging line
+
+print("Data augmentation completed. Check the output directory for original and augmented images.")
