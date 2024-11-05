@@ -14,8 +14,8 @@ st.set_page_config(
 # Function to load models
 @st.cache_resource
 def load_models():
-    cnn_model = tf.keras.models.load_model('terrain_classifier_cnnmodel.h5')
-    vgg_model = tf.keras.models.load_model('terrain_analysis_vgg16model.h5')
+    cnn_model = tf.keras.models.load_model('C:/Users/GOKUL RAJ/RAJ/Github codes/Terrain_Classification/Saved_Models/terrain_classifier_cnnmodel.h5')
+    vgg_model = tf.keras.models.load_model('C:/Users/GOKUL RAJ/RAJ/Github codes/Terrain_Classification/Saved_Models/terrain_analysis_vgg16model.h5')
     return cnn_model, vgg_model
 
 # Function to preprocess image for CNN model

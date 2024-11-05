@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Set up paths
-data_dir = 'C:/Users/GOKUL RAJ/RAJ/TERRAIN ANALYSIS/terrain_dataset'  # Path to your dataset
+data_dir = 'C:/Users/GOKUL RAJ/RAJ/Github codes/Terrain_Classification/new_terrain_dataset'
 
 # Set up image data generator
 train_datagen = ImageDataGenerator(
@@ -80,7 +80,7 @@ y_true = validation_generator.classes
 # 2. Classification report
 class_labels = list(validation_generator.class_indices.keys())
 report = classification_report(y_true, y_pred_classes, target_names=class_labels)
-print("Classification Report:\n", report)
+print("Classification Report:/n", report)
 
 # 3. Confusion Matrix
 conf_matrix = confusion_matrix(y_true, y_pred_classes)
@@ -105,4 +105,4 @@ def predict_terrain(image_path):
 
 # Example usage
 # Replace 'path_to_your_image' with the actual image path you want to predict
-predict_terrain('C:/Users/GOKUL RAJ/RAJ/TERRAIN ANALYSIS/terrain_dataset/Grass/Grass_aug_4.jpg')
+predict_terrain('new_terrain_dataset/concrete/concrete_aug_0_246.jpg')

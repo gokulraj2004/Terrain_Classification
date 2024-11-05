@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Define the path to your dataset
-dataset_path = 'C:/Users/GOKUL RAJ/RAJ/TERRAIN ANALYSIS/terrain_dataset'  # Replace with your actual path
+dataset_path = 'C:/Users/GOKUL RAJ/RAJ/Github codes/Terrain_Classification/new_terrain_dataset'  # Replace with your actual path
 
 # Check the directory structure and count images in each class
 for class_name in os.listdir(dataset_path):
@@ -82,7 +82,7 @@ true_classes = val_generator.classes[:len(predicted_classes)]
 # Classification report
 class_labels = list(val_generator.class_indices.keys())
 report = classification_report(true_classes, predicted_classes, target_names=class_labels)
-print("Classification Report:\n", report)
+print("Classification Report:/n", report)
 
 # Confusion Matrix
 conf_matrix = confusion_matrix(true_classes, predicted_classes)
@@ -102,7 +102,7 @@ def load_and_preprocess_image(img_path):
     return img_array
 
 # Path to your test image
-test_image_path = "C:/Users/GOKUL RAJ/RAJ/TERRAIN ANALYSIS/terrain_dataset/Grass/Grass_aug_4.jpg"
+test_image_path = "C:/Users/GOKUL RAJ/RAJ/Github codes/Terrain_Classification/new_terrain_dataset/grass/grass_aug_0_768.jpg"
 
 # Load and preprocess the test image
 test_image = load_and_preprocess_image(test_image_path)

@@ -1,0 +1,45 @@
+custom cnn
+Classification Report:/n               precision    recall  f1-score   support
+
+     asphalt       0.97      1.00      0.99        35
+    concrete       1.00      0.96      0.98        25
+       grass       1.00      1.00      1.00        20
+        sand       1.00      1.00      1.00        39
+        soil       1.00      1.00      1.00        34
+
+    accuracy                           0.99       153
+   macro avg       0.99      0.99      0.99       153
+weighted avg       0.99      0.99      0.99       153
+
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 117ms/step
+The predicted terrain type is: concrete
+
+
+Classification Report:/n               precision    recall  f1-score   support
+
+     asphalt       1.00      1.00      1.00        35
+    concrete       1.00      1.00      1.00        25
+       grass       1.00      1.00      1.00        20
+        sand       1.00      1.00      1.00        39
+        soil       1.00      1.00      1.00        34
+
+    accuracy                           1.00       153
+   macro avg       1.00      1.00      1.00       153
+weighted avg       1.00      1.00      1.00       153
+
+
+vgg16
+Classification Report:/n               precision    recall  f1-score   support
+
+     asphalt       0.24      0.23      0.23        35
+    concrete       0.12      0.12      0.12        25
+       grass       0.20      0.20      0.20        20
+        sand       0.20      0.21      0.20        39
+        soil       0.29      0.29      0.29        34
+
+    accuracy                           0.22       153
+   macro avg       0.21      0.21      0.21       153
+weighted avg       0.22      0.22      0.22       153
+
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 251ms/step
+The predicted terrain type is: grass
